@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>东方神速 East Speed · 多线程下载管理器</title>
+<style>
+  :root{--primary:#2D7FF9;--dark:#1456C0;--ink:#1F2937;--muted:#5B6B7F;--line:#E4E9F0;}
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{font-family:"Microsoft YaHei","PingFang SC",Segoe UI,Arial,sans-serif;color:var(--ink);background:#F3F5F8;line-height:1.7;}
+  .hero{background:linear-gradient(135deg,var(--primary),var(--dark));color:#fff;padding:72px 20px 64px;text-align:center;}
+  .hero h1{font-size:46px;margin-bottom:10px;letter-spacing:2px;}
+  .hero .en{opacity:.9;font-size:18px;letter-spacing:1px;}
+  .hero p{margin-top:18px;font-size:18px;opacity:.95;}
+  .btns{margin-top:30px;display:flex;gap:14px;justify-content:center;flex-wrap:wrap;}
+  .btn{display:inline-block;padding:12px 28px;border-radius:8px;font-size:16px;text-decoration:none;font-weight:600;}
+  .btn-light{background:#fff;color:var(--dark);}
+  .btn-outline{border:1.5px solid rgba(255,255,255,.8);color:#fff;}
+  .wrap{max-width:960px;margin:-34px auto 0;padding:0 18px 60px;}
+  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;}
+  .card{background:#fff;border:1px solid var(--line);border-radius:12px;padding:22px 22px;box-shadow:0 8px 24px rgba(20,86,192,.06);}
+  .card h3{color:var(--dark);font-size:17px;margin-bottom:8px;}
+  .card p{color:#42506a;font-size:14.5px;}
+  .sec-title{text-align:center;font-size:24px;margin:46px 0 22px;color:var(--ink);}
+  .note{max-width:960px;margin:26px auto 0;padding:0 18px;color:var(--muted);font-size:14px;text-align:center;}
+  footer{text-align:center;color:var(--muted);font-size:13px;padding:30px 16px 40px;}
+  footer a{color:var(--primary);text-decoration:none;}
+</style>
+</head>
+<body>
+  <header class="hero">
+    <h1>东方神速</h1>
+    <div class="en">East Speed Download Manager</div>
+    <p>简洁干净、快速轻巧的 Windows 多线程下载管理器，浏览器一键接管，支持断点续传与网页媒体下载。</p>
+    <div class="btns">
+      <a class="btn btn-light" href="privacy-policy.html">浏览器扩展隐私政策</a>
+      <a class="btn btn-outline" href="https://microsoftedge.microsoft.com/addons/" target="_blank" rel="noopener">在 Edge 加载项中查看（上架后补链接）</a>
+    </div>
+  </header>
+
+  <div class="wrap">
+    <h2 class="sec-title">主要功能</h2>
+    <div class="grid">
+      <div class="card"><h3>多线程加速</h3><p>最多 16 个并发连接分段下载，断点续传、失败自动重试、卡死连接自动切换。</p></div>
+      <div class="card"><h3>浏览器接管</h3><p>配套 Edge / Chrome 扩展，点击下载链接自动弹出接管窗口，也可手动粘贴链接。</p></div>
+      <div class="card"><h3>网页媒体下载</h3><p>嗅探 mp4 / m3u8(HLS) / mp3，视频页悬浮下载按钮，HLS 自动下载分片并合并。</p></div>
+      <div class="card"><h3>更多协议与工具</h3><p>HTTP/HTTPS/FTP/FTPS、BT 种子与磁力、MD5/SHA 校验、计划任务、代理与杀毒调用等。</p></div>
+    </div>
+  </div>
+
+  <p class="note">浏览器扩展为桌面程序的配套组件，所有下载数据仅在浏览器与本机程序之间传输，不上传云端、不含广告与跟踪。不支持受 DRM 保护的内容。</p>
+
+  <footer>
+    © 2026 东方神速 East Speed ·
+    <a href="privacy-policy.html">隐私政策 / Privacy Policy</a>
+  </footer>
+</body>
+</html>
