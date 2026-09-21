@@ -1,7 +1,15 @@
 # -*- coding: utf-8 -*-
 """重打便携版与源码 zip（标准库 zipfile，结构可控）。"""
 import os
+import sys
 import zipfile
+
+# CI 的 Windows runner 默认 cp1252，print 中文会 UnicodeEncodeError；强制 UTF-8 输出
+for _stream in (sys.stdout, sys.stderr):
+    try:
+        _stream.reconfigure(encoding="utf-8", errors="replace")  # type: ignore[attr-defined]
+    except Exception:  # noqa: BLE001
+        pass
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 DIST = os.path.join(ROOT, "dist")
