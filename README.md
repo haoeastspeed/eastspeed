@@ -8,7 +8,7 @@
 
 ## 开源与构建
 
-- **源代码仓库**：<https://github.com/haoeastspeed/eastspeed>（MIT 许可证，欢迎 Issue / PR）。
+- **源代码仓库**：<https://github.com/haoeastspeed/eastspeed>（GPL-3.0 许可证，欢迎 Issue / PR）。
 - **持续集成**：推送到 `main` 或提交 `v*` 标签时，GitHub Actions 在 Windows + Python 3.12 上自动安装依赖、跑测试、用 PyInstaller 打包单文件/便携版并执行 `--selftest`，定义见 [`.github/workflows/build.yml`](.github/workflows/build.yml)。
 - **代码签名**：正式 Release 计划经 SignPath Foundation 的免费开源证书签名（私钥 HSM 托管、受 Windows 信任），接入与发布步骤见 [SIGNING.md](SIGNING.md)。
 
@@ -465,11 +465,11 @@ URL 以 `.m3u8` 结尾时自动分发到 HLS 引擎，`ftp://` / `ftps://` 分�
 
 ## 法律与合规提示
 
-- 本项目采用 **MIT 许可证**，可自由使用、修改与商用，但请保留版权声明。
+- 本项目采用 **GNU 通用公共许可证 v3.0（GPL-3.0）**，与界面框架 PyQt5 的 GPLv3 许可一致；可自由使用、学习与修改，分发程序或衍生作品（含网络分发）时须同样以 GPL-3.0 开源并保留版权声明，详见 [LICENSE](LICENSE)。
 - “下载时动态分段/连接复用”是 IDM 厂商 Tonec 的商业化技术区域，**在美国等司法辖区可能存在相关专利**。本项目为学习与研究目的的独立实现；若计划公开发布或商业分发，请自行完成自由实施（FTO）检索，规避受保护的具体算法权利要求。
 - 请遵守目标网站的服务条款与 robots 规则、版权法及当地法律，不要用于绕过访问控制或下载侵权内容。
 - 本项目**不提供、也不会实现**对 DRM（如 Widevine/PlayReady/FairPlay）及 SAMPLE-AES 加密媒体的解密或绕过；blob 接管仅保存页面中未加密的普通 Blob。整站抓取默认仅同站、有限深度并尊重 robots.txt，请勿用于高并发抓取他人服务器。
 
 ## 许可证
 
-[MIT](LICENSE)
+[GNU General Public License v3.0 (GPL-3.0)](LICENSE)
