@@ -1,0 +1,11 @@
+{
+  "appName": {
+    "message": "East Speed"
+  },
+  "extensionName": {
+    "message": "East Speed Download Integration"
+  },
+  "extensionDescription": {
+    "message": "Hand off browser downloads and web media (mp4/m3u8/blob) to the local East Speed app with multi-connection acceleration and resume support."
+  }
+}

@@ -1,0 +1,27 @@
+__pycache__/
+*.pyc
+*.pyo
+.venv/
+venv/
+build/
+dist/
+*.spec
+tests/output/
+*.pdlmeta
+*.pdltmp
+
+# 日志 / 覆盖率
+*.log
+.coverage
+htmlcov/
+
+# 系统 / IDE
+Thumbs.db
+desktop.ini
+.idea/
+.vscode/
+
+# 代码签名私钥与证书（绝不入库）
+*.pfx
+*.p12
+*.key

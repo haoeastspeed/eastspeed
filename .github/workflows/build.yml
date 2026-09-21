@@ -1,0 +1,144 @@
+# 东方神速 / East Speed —— 从公开源码的可复现构建
+#
+# 该工作流是接入 SignPath 免费代码签名的前提：签名机构要求产物必须由
+# GitHub Actions 在“公开源码仓库”中构建，而不是上传本地二进制。
+#
+# 现在生效：test（单元/端到端测试）+ build（打包单文件/便携版并自检、产出 artifact）。
+# SignPath 账号与密钥就绪后，按仓库根目录 SIGNING.md 的说明启用文末“签名 + 发布”作业。
+
+name: Build
+
+on:
+  push:
+    branches: [main]
+    tags: ["v*"]
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  test:
+    name: 单元与端到端测试
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+      - name: 安装依赖
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+      - name: 运行测试
+        # CI 沙箱里 BT/DHT 等依赖公网的用例可能因网络受限抖动，
+        # 这里让测试结果可见但不阻断打包；正式发布前请人工确认本次测试通过。
+        continue-on-error: true
+        run: python -m unittest discover -s tests
+
+  build:
+    name: 打包 Windows 产物
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+      - name: 安装依赖（含 PyInstaller）
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+          pip install pyinstaller
+      - name: 构建单文件版与便携版
+        run: python tools/build_exe.py both
+      - name: 打包便携 zip
+        run: python tools/make_zips.py
+      - name: 单文件版自检
+        shell: pwsh
+        run: |
+          $p = Start-Process -FilePath ".\dist\DongFangSpeed.exe" -ArgumentList "--selftest" -PassThru -Wait -NoNewWindow
+          Write-Host "selftest exit code: $($p.ExitCode)"
+          if ($p.ExitCode -ne 0) { throw "selftest failed" }
+      - name: 上传单文件版
+        uses: actions/upload-artifact@v4
+        with:
+          name: DongFangSpeed-single-exe
+          path: dist/DongFangSpeed.exe
+          if-no-files-found: error
+      - name: 上传便携版 zip
+        uses: actions/upload-artifact@v4
+        with:
+          name: DongFangSpeed-portable-zip
+          path: dist/*.zip
+          if-no-files-found: error
+
+  # ======================================================================
+  # SignPath 免费代码签名 + GitHub Release（待 SignPath 项目就绪后启用）
+  # ----------------------------------------------------------------------
+  # 前置（详见 SIGNING.md）：
+  #   1) 安装 SignPath GitHub App 到本仓库；
+  #   2) 在 SignPath 创建 Project 并关联本仓库、创建 Release 签名策略；
+  #   3) 在仓库 Settings → Secrets and variables → Actions 添加：
+  #        SIGNPATH_API_TOKEN（CI 链接/服务账户令牌）
+  #   4) 把下面各 <...> 替换为 SignPath 控制台里的真实 slug / id；
+  #   5) 取消整段注释。签名请求在免费版需人工在 SignPath 后台审批一次。
+  # ======================================================================
+  #
+  # sign:
+  #   name: SignPath 签名
+  #   if: startsWith(github.ref, 'refs/tags/v')
+  #   needs: build
+  #   runs-on: windows-latest
+  #   steps:
+  #     - uses: actions/checkout@v4
+  #     - name: 下载未签名单文件
+  #       uses: actions/download-artifact@v4
+  #       with:
+  #         name: DongFangSpeed-single-exe
+  #         path: ./unsigned
+  #     - name: 提交签名请求并等待完成
+  #       uses: signpath/github-action-submit-signing-request@v3
+  #       with:
+  #         api-token: ${{ secrets.SIGNPATH_API_TOKEN }}
+  #         organization-id: "<SignPath-Organization-ID>"
+  #         project-slug: "eastspeed"
+  #         signing-policy-slug: "release-signing"
+  #         artifact-configuration-slug: "release-artifact"
+  #         github-artifact-id: "${{ github.run_id }}"
+  #         wait-for-completion: true
+  #         output-artifact-directory: ./signed
+  #     - name: 上传已签名产物
+  #       uses: actions/upload-artifact@v4
+  #       with:
+  #         name: DongFangSpeed-signed-exe
+  #         path: ./signed/DongFangSpeed.exe
+  #
+  # release:
+  #   name: 发布 GitHub Release
+  #   if: startsWith(github.ref, 'refs/tags/v')
+  #   needs: [build, sign]
+  #   runs-on: windows-latest
+  #   permissions:
+  #     contents: write
+  #   steps:
+  #     - uses: actions/checkout@v4
+  #     - name: 下载已签名单文件
+  #       uses: actions/download-artifact@v4
+  #       with:
+  #         name: DongFangSpeed-signed-exe
+  #         path: ./release
+  #     - name: 下载便携 zip
+  #       uses: actions/download-artifact@v4
+  #       with:
+  #         name: DongFangSpeed-portable-zip
+  #         path: ./release
+  #     - name: 生成校验值
+  #       shell: pwsh
+  #       run: Get-FileHash ./release/* -Algorithm SHA256 | Out-File ./release/SHA256SUMS.txt
+  #     - name: 发布
+  #       uses: softprops/action-gh-release@v2
+  #       with:
+  #         files: |
+  #           ./release/DongFangSpeed.exe
+  #           ./release/*.zip
+  #           ./release/SHA256SUMS.txt

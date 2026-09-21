@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <link rel="stylesheet" href="popup.css" />
+</head>
+<body>
+  <header>
+    <div class="brand">
+      <img src="icons/icon48.png" alt="" width="22" height="22" />
+      <span>东方神速</span>
+    </div>
+    <span id="conn" class="conn off">未连接</span>
+  </header>
+
+  <section class="switches">
+    <label class="switch-row">
+      <span>自动接管浏览器下载</span>
+      <input type="checkbox" id="takeover" />
+    </label>
+    <label class="switch-row">
+      <span>网页媒体嗅探（mp4 / m3u8）</span>
+      <input type="checkbox" id="sniff" />
+    </label>
+  </section>
+
+  <section>
+    <div class="section-title">本页检测到的媒体</div>
+    <div id="media-list" class="media-list">
+      <div class="empty">暂未检测到媒体，播放视频后再打开此面板</div>
+    </div>
+    <button id="clear-media" class="link-btn">清空列表</button>
+  </section>
+
+  <section>
+    <div class="section-title">本页生成的 Blob（实验性）</div>
+    <div id="blob-list" class="media-list">
+      <div class="empty">暂未检测到 blob: 资源</div>
+    </div>
+    <div class="hint">仅可保存页面尚未释放的普通 Blob；受 DRM 保护的流媒体无法接管。</div>
+  </section>
+
+  <section>
+    <div class="section-title">手动下载</div>
+    <div class="manual">
+      <input type="text" id="manual-url" placeholder="粘贴下载链接（http/https，支持 m3u8）" />
+      <button id="manual-go" class="primary">下载</button>
+    </div>
+  </section>
+
+  <section class="bridge">
+    <div class="section-title">本地桥接</div>
+    <div class="form-row">
+      <label>端口</label>
+      <input type="number" id="port" min="1024" max="65535" />
+      <button id="test-conn">测试</button>
+    </div>
+    <div class="form-row column">
+      <label>Token（一般无需填写，会与本机程序自动配对；连不上时再到「设置 → 界面与集成」复制）</label>
+      <input type="password" id="token" placeholder="留空即自动配对" />
+    </div>
+    <div id="msg" class="msg"></div>
+  </section>
+
+  <script src="popup.js"></script>
+</body>
+</html>

@@ -1,0 +1,11 @@
+{
+  "appName": {
+    "message": "东方神速"
+  },
+  "extensionName": {
+    "message": "东方神速 下载接管"
+  },
+  "extensionDescription": {
+    "message": "把浏览器下载与网页媒体（mp4/m3u8/blob 等）接管到本地「东方神速」，支持多线程与断点续传。"
+  }
+}

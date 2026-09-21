@@ -1,0 +1,24 @@
+# ===== 核心依赖（必需，保持轻量）=====
+requests>=2.31        # HTTP/HTTPS 下载
+PyQt5>=5.15           # 图形界面
+cryptography>=42.0    # FTPS / 测试自签证书等加密支持
+truststore>=0.9       # 使用 Windows 系统证书库（信任企业内网/自签 CA）
+
+# ===== 可选功能依赖（不装也能运行，相关功能自动降级或隐藏）=====
+# HTTP/2 下载支持（设置中开启“优先使用 HTTP/2”）：
+httpx[h2]>=0.27
+# 代理 NTLM/Negotiate（域账号）认证：
+requests_ntlm>=1.3
+# Windows 完成后杀毒钩子默认调用系统自带 Windows Defender，无需额外安装；
+# 若要更细的 COM 集成可安装 pywin32（非必需）。
+pywin32>=306 ; sys_platform == "win32"
+# BT/磁力下载（BitTorrent）。注意：libtorrent 在 Python 3.13/3.14 上
+# 暂无官方预编译包，建议使用 Python 3.11/3.12 安装：
+#   pip install libtorrent
+libtorrent ; python_version < "3.13"
+# m3u8/HLS 合并为 mp4 时需要系统 PATH 中存在 ffmpeg（非 pip 包）。
+
+# ===== 仅开发/测试需要（普通用户无需安装）=====
+pyftpdlib>=2.0        # FTP/FTPS 测试服务器
+hypercorn>=0.17       # HTTP/2 测试服务器
+pyopenssl>=23.0       # pyftpdlib 的 TLS 测试支持
