@@ -17,7 +17,7 @@
 
 ## 一、已经准备好的部分（无需你手写）
 
-- [x] 完整源码公开（MIT 许可证，见 `LICENSE`）；
+- [x] 完整源码公开（**GPL-3.0** 许可证，见 `LICENSE`；与界面框架 PyQt5 的 GPLv3 一致）；
 - [x] 从源码可复现构建：`.github/workflows/build.yml`
       在 Windows + Python 3.12 上自动安装依赖、跑测试、
       用 PyInstaller 打包单文件/便携版并执行 `--selftest`；
@@ -34,7 +34,7 @@
 3. 按 SignPath Foundation 的开源项目申请入口，填写项目信息：
    - 项目名称：East Speed（东方神速）；
    - 代码仓库：`https://github.com/haoeastspeed/eastspeed`；
-   - 开源许可证：MIT；
+   - 开源许可证：GPL-3.0（GNU General Public License v3.0，与 PyQt5 GPLv3 兼容）；
    - 用途说明：免费、非商业的 Windows 下载管理器；
 4. 按提示为账号开启 **多因素认证（MFA）**（免费证书的强制要求）；
 5. 等待 Foundation 审核通过（通常需要一些时间，可能被要求补充项目说明）。
