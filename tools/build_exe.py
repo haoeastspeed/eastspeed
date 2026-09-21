@@ -225,7 +225,11 @@ def _run_pyinstaller(args: list[str]):
 def build_portable():
     print("[build] === 便携版（onedir）===")
     out = os.path.join(ROOT, "dist", NAME)
-    _run_pyinstaller(common_args(os.path.join(ROOT, "build", "onedir"))
+    work = os.path.join(ROOT, "build", "onedir")
+    # 全新检出（如 CI）时 build/dist 尚不存在，PyInstaller 不会自建 specpath 多级目录
+    os.makedirs(work, exist_ok=True)
+    os.makedirs(os.path.join(ROOT, "dist"), exist_ok=True)
+    _run_pyinstaller(common_args(work)
                      + ["--onedir", "--distpath", os.path.join(ROOT, "dist")])
     # 轻量化：裁剪用不到的 Qt 原生库/资源
     internal = os.path.join(out, "_internal")
@@ -361,9 +365,12 @@ def write_single_spec() -> str:
 def build_single():
     print("[build] === 单文件版（onefile，spec 过滤原生库）===")
     spec_path = write_single_spec()
+    work = os.path.join(ROOT, "build", "onefile")
+    os.makedirs(work, exist_ok=True)
+    os.makedirs(os.path.join(ROOT, "dist"), exist_ok=True)
     _run_pyinstaller([spec_path, "--noconfirm",
                       "--distpath", os.path.join(ROOT, "dist"),
-                      "--workpath", os.path.join(ROOT, "build", "onefile")])
+                      "--workpath", work])
     exe = os.path.join(ROOT, "dist", NAME + ".exe")
     print(f"[build] 单文件： {exe}")
     print(f"[build] 大小： {os.path.getsize(exe) / 1048576:.1f} MB")
