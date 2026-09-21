@@ -579,7 +579,7 @@ class MainWindow(QMainWindow):
             f"<h3 style='margin-bottom:2px'>{APP_NAME}"
             f"<span style='font-weight:400;color:#5B6B7F;font-size:10pt;'>"
             f"　{APP_NAME_EN}　v{APP_VERSION}</span></h3>"
-            "<p>自研多线程下载管理器（Python + PyQt5，MIT 开源）。</p>"
+            "<p>自研多线程下载管理器（Python + PyQt5，GPL-3.0 开源）。</p>"
             "<p>动态分段多连接、断点续传、HTTP/HTTPS/FTP/FTPS、HTTP/2、"
             "m3u8/HLS 视频、网页资源抓取、BT/磁力、MD5/SHA 校验、"
             "真实占盘预分配、完成后杀毒、队列调度、限速、代理、"
