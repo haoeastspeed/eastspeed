@@ -18,6 +18,15 @@ import shutil
 import sys
 from pathlib import Path
 
+# CI 的 Windows runner 默认控制台是英文代码页（cp1252），脚本里 print 中文
+# （如“便携版”）会抛 UnicodeEncodeError 直接退出。强制标准流为 UTF-8，
+# 对本机中文环境与 CI 英文环境都安全；errors="replace" 保证任何情况下不因输出崩溃。
+for _stream in (sys.stdout, sys.stderr):
+    try:
+        _stream.reconfigure(encoding="utf-8", errors="replace")  # type: ignore[attr-defined]
+    except Exception:  # noqa: BLE001
+        pass
+
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 NAME = "DongFangSpeed"
 SEP = ";" if os.name == "nt" else ":"
