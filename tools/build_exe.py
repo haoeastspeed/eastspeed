@@ -13,7 +13,9 @@
 """
 from __future__ import annotations
 
+import datetime
 import os
+import re
 import shutil
 import sys
 from pathlib import Path
@@ -238,8 +240,11 @@ def build_portable():
     # 全新检出（如 CI）时 build/dist 尚不存在，PyInstaller 不会自建 specpath 多级目录
     os.makedirs(work, exist_ok=True)
     os.makedirs(os.path.join(ROOT, "dist"), exist_ok=True)
+    version_file = write_version_info()
+    extra = ["--version-file", version_file] if version_file else []
     _run_pyinstaller(common_args(work)
-                     + ["--onedir", "--distpath", os.path.join(ROOT, "dist")])
+                     + ["--onedir", "--distpath", os.path.join(ROOT, "dist")]
+                     + extra)
     # 轻量化：裁剪用不到的 Qt 原生库/资源
     internal = os.path.join(out, "_internal")
     if os.path.isdir(internal):
@@ -352,11 +357,67 @@ exe = EXE(
 '''
 
 
-def write_single_spec() -> str:
+# ---- Windows 文件属性元数据（SignPath 要求设置并强制产品名/版本一致）----
+VERSION_INFO_TEMPLATE = r'''# -*- coding: utf-8 -*-
+# 由 tools/build_exe.py 依据 core/branding.py 自动生成，请勿手改
+VSVersionInfo(
+  ffi=FixedFileInfo(
+    filevers={ver_tuple},
+    prodvers={ver_tuple},
+    mask=0x3F,
+    flags=0x0,
+    OS=0x40004,
+    fileType=0x1,
+    subtype=0x0,
+    date=(0, 0)),
+  kids=[
+    StringFileInfo([
+      StringTable(
+        u'040904B0',
+        [StringStruct(u'CompanyName', u'{name_en} Open Source'),
+         StringStruct(u'FileDescription', u'{name_en} Download Manager'),
+         StringStruct(u'FileVersion', u'{version}'),
+         StringStruct(u'InternalName', u'{exe}'),
+         StringStruct(u'LegalCopyright', u'Copyright (C) {year} {name_en} contributors'),
+         StringStruct(u'LegalTrademarks', u'{name_en}'),
+         StringStruct(u'OriginalFilename', u'{exe}.exe'),
+         StringStruct(u'ProductName', u'{name_en}'),
+         StringStruct(u'ProductVersion', u'{version}')]),
+    ]),
+    VarFileInfo([VarStruct(u'Translation', [1033, 1200])])
+  ]
+)
+'''
+
+
+def write_version_info() -> str | None:
+    """按 core/branding.py 生成 Windows 版本元数据文件，返回路径（失败返回 None）。"""
+    try:
+        sys.path.insert(0, ROOT)
+        from core.branding import APP_NAME_EN, EXE_NAME, APP_VERSION
+    except Exception as exc:  # noqa: BLE001
+        print(f"[build] 无法读取品牌信息，跳过版本元数据：{exc}")
+        return None
+    nums = [int(x) for x in re.findall(r"\d+", APP_VERSION)]
+    nums = (nums + [0, 0, 0, 0])[:4]
+    text = VERSION_INFO_TEMPLATE.format(
+        ver_tuple=tuple(nums),
+        version=APP_VERSION,
+        name_en=APP_NAME_EN,
+        exe=EXE_NAME,
+        year=datetime.datetime.now().year,
+    )
+    os.makedirs(os.path.join(ROOT, "build"), exist_ok=True)
+    path = os.path.join(ROOT, "build", "version_info.txt")
+    with open(path, "w", encoding="utf-8") as f:
+        f.write(text)
+    return path
+
+
+def write_single_spec(version_file: str | None = None) -> str:
     os.makedirs(os.path.join(ROOT, "build"), exist_ok=True)
     spec_path = os.path.join(ROOT, "build", "dongfangspeed_single.spec")
-    version_file = os.path.join(ROOT, "version_info.txt")
-    version_arg = repr(version_file) if os.path.isfile(version_file) else "None"
+    version_arg = repr(version_file) if version_file else "None"
     text = SINGLE_SPEC_TEMPLATE.format(
         root=ROOT,
         name=NAME,
@@ -373,7 +434,8 @@ def write_single_spec() -> str:
 
 def build_single():
     print("[build] === 单文件版（onefile，spec 过滤原生库）===")
-    spec_path = write_single_spec()
+    version_file = write_version_info()
+    spec_path = write_single_spec(version_file)
     work = os.path.join(ROOT, "build", "onefile")
     os.makedirs(work, exist_ok=True)
     os.makedirs(os.path.join(ROOT, "dist"), exist_ok=True)
