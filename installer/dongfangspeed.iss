@@ -5,7 +5,7 @@
 #define MyAppName "东方神速"
 #define MyAppNameEn "DongFangSpeed"
 #define MyAppVersion "1.0.0"
-#define MyAppPublisher "东方神速开源项目 (MIT)"
+#define MyAppPublisher "东方神速开源项目 (GPL-3.0)"
 #define MyAppExeName "DongFangSpeed.exe"
 
 [Setup]
