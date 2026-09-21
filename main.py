@@ -10,6 +10,45 @@
 import sys
 
 
+def _make_stdio_safe():
+    """保证任何环境下 print 都不崩溃。
+
+    - 英文 Windows / CI 的控制台默认代码页可能是 cp1252，print 中文（应用名等）
+      会抛 UnicodeEncodeError 直接退出；
+    - PyInstaller --windowed（无控制台）打包时 sys.stdout/sys.stderr 可能为 None。
+    统一把标准流设为 UTF-8、errors="replace"；为空则重定向到空设备。
+    必须在任何业务导入与输出之前调用。
+    """
+    import os
+
+    class _NullStream:
+        def write(self, *a, **k):
+            return 0
+
+        def flush(self):
+            pass
+
+        def reconfigure(self, **k):
+            pass
+
+    for name in ("stdout", "stderr"):
+        s = getattr(sys, name, None)
+        if s is None:  # 无控制台的 windowed 打包
+            try:
+                s = open(os.devnull, "w", encoding="utf-8", errors="replace")
+            except Exception:  # noqa: BLE001
+                s = _NullStream()
+            setattr(sys, name, s)
+        else:
+            try:
+                s.reconfigure(encoding="utf-8", errors="replace")
+            except Exception:  # noqa: BLE001
+                pass
+
+
+_make_stdio_safe()
+
+
 def selftest() -> int:
     """frozen/源码环境自检：导入关键模块、校验品牌资源与扩展释放。"""
     diag_lines = []
