@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>东方神速 浏览器扩展 · 隐私政策 / Privacy Policy</title>
+<style>
+  :root{ --primary:#2D7FF9; --primary-dark:#1456C0; --ink:#1F2937; --muted:#5B6B7F;
+         --line:#E4E9F0; --bg:#F3F5F8; }
+  *{box-sizing:border-box;}
+  body{margin:0;background:var(--bg);color:var(--ink);
+       font-family:"Microsoft YaHei","PingFang SC",Segoe UI,Arial,sans-serif;
+       line-height:1.8;font-size:16px;}
+  .hero{background:linear-gradient(135deg,var(--primary),var(--primary-dark));
+        color:#fff;padding:40px 20px 34px;text-align:center;}
+  .hero h1{margin:0 0 6px;font-size:30px;}
+  .hero .sub{opacity:.92;font-size:15px;}
+  .wrap{max-width:860px;margin:-22px auto 60px;padding:0 16px;}
+  .card{background:#fff;border:1px solid var(--line);border-radius:14px;
+        padding:34px 40px;box-shadow:0 8px 30px rgba(20,86,192,.08);}
+  h2{font-size:21px;color:var(--primary-dark);border-left:5px solid var(--primary);
+     padding-left:12px;margin:34px 0 12px;}
+  h2:first-child{margin-top:0;}
+  h3{font-size:17px;margin:20px 0 6px;}
+  p,li{color:#2b3645;}
+  ul{padding-left:22px;}
+  .meta{background:#F2F7FF;border:1px solid #DCEBFF;border-radius:10px;
+        padding:12px 16px;font-size:14px;color:var(--muted);margin-bottom:8px;}
+  .en{color:#334155;}
+  .divider{border:none;border-top:1px dashed var(--line);margin:40px 0;}
+  .contact{background:#F7F9FC;border-radius:10px;padding:16px 20px;font-size:15px;}
+  code{background:#EEF3FA;padding:1px 6px;border-radius:5px;font-size:14px;}
+  footer{text-align:center;color:var(--muted);font-size:13px;margin-top:22px;}
+</style>
+</head>
+<body>
+<div class="hero">
+  <h1>东方神速 浏览器扩展 · 隐私政策</h1>
+  <div class="sub">East Speed Browser Extension — Privacy Policy</div>
+</div>
+<div class="wrap">
+  <div class="card">
+    <div class="meta">
+      适用产品：Microsoft Edge / Chrome 浏览器扩展「东方神速 下载接管」（v1.2.0，Manifest V3）及其配套 Windows 桌面程序「东方神速 East Speed」。<br/>
+      生效日期：2026-09-20　|　版本：v1.2.0　|　Applies to the extension “东方神速 下载接管” and its companion Windows app.
+    </div>
+
+    <h2>一、核心原则（请先阅读）</h2>
+    <p>东方神速是一款<strong>本地化</strong>下载工具。浏览器扩展的唯一作用，是把你在浏览器中发起的下载与网页媒体，转交给<strong>运行在你自己电脑上</strong>的桌面程序完成。我们<strong>不设置任何远程服务器，不注册账号，不收集、不上传、不出售你的任何数据</strong>。扩展的全部网络通信都只发往本机回环地址 <code>127.0.0.1</code>，数据不离开你的电脑、不经过互联网。</p>
+
+    <h2>二、扩展会接触哪些信息</h2>
+    <p>为完成下载，扩展会在<strong>本机范围内</strong>处理以下信息：</p>
+    <ul>
+      <li><strong>下载链接与媒体地址</strong>：你点击的文件下载 URL，以及当前页面正在加载的 mp4 / m3u8(HLS) / mp3 等媒体 URL；</li>
+      <li><strong>Cookie 与 Referer</strong>：当下载需要登录态时，扩展按具体下载 URL 读取该站点的 Cookie 连同 Referer 一并交给<strong>本机</strong>桌面程序；</li>
+      <li><strong>Blob 数据（实验性）</strong>：仅当你主动保存时，读取页面通过 <code>blob:</code> 生成且尚未释放的<strong>普通未加密</strong> Blob 二进制内容；</li>
+      <li><strong>本地设置</strong>：接管/嗅探开关、本机端口与令牌、本页面检测到的媒体列表，仅保存在浏览器本地存储中。</li>
+    </ul>
+    <p>扩展<strong>不读取</strong>：网页表单内容、密码、支付与银行卡信息、私信、通讯录、地理位置、健康或财务数据。</p>
+
+    <h2>三、信息如何使用</h2>
+    <ul>
+      <li>上述信息仅用于在本机建立下载任务、携带必要的登录凭据完成下载、识别可下载的媒体；</li>
+      <li>媒体嗅探使用 <code>webRequest</code> 的<strong>只读、非阻塞</strong>方式，不修改、不拦截、不重定向任何请求；</li>
+      <li>不会用于画像、广告、营销、数据分析或与下载无关的任何目的。</li>
+    </ul>
+
+    <h2>四、信息如何传输与存储</h2>
+    <ul>
+      <li>扩展 → 桌面程序的通信目标仅为 <code>http://127.0.0.1</code> / <code>http://localhost</code>（默认端口 8765，可在设置中修改）。回环流量不经过局域网或互联网；</li>
+      <li>下载的文件保存在你在桌面程序中指定的本地目录；设置保存在本机；</li>
+      <li>扩展不含远程代码（遵循 Manifest V3 要求，无 <code>eval</code>、无远程脚本加载），不含广告、统计或跟踪 SDK，不内嵌任何第三方分析服务。</li>
+    </ul>
+
+    <h2>五、信息共享与披露</h2>
+    <p>我们不会向任何第三方出售、出租、共享或披露你的信息，因为数据从一开始就不会发送给我们。唯一的例外是法律法规或有权机关依法强制要求的情形。下载行为本身所连接的是<strong>你主动选择的目标网站</strong>，其对数据的处理适用该网站自身的隐私政策，与本扩展无关。</p>
+
+    <h2>六、数据安全</h2>
+    <p>扩展遵循浏览器最小权限原则，所申请的每项权限均在商店列表的“权限理由”中逐条说明；与桌面程序的通信限定在本机回环；桌面程序提供可选的下载完成杀毒调用。尽管如此，任何软件都无法保证绝对安全，我们会持续修复发现的问题。</p>
+
+    <h2>七、你的选择与控制</h2>
+    <ul>
+      <li>可随时在扩展弹窗中关闭“自动接管下载”或“媒体嗅探”；</li>
+      <li>可在浏览器扩展管理页停用或卸载扩展，卸载后其本地数据一并清除；</li>
+      <li>可在桌面程序中删除下载任务与文件、修改保存目录与端口。</li>
+    </ul>
+
+    <h2>八、版权与 DRM 说明</h2>
+    <p>本工具不下载受 DRM 保护的内容（如 Widevine、PlayReady、FairPlay 及加密 HLS）。请仅下载你依法有权获取的内容，并遵守目标网站条款与当地法律法规；因你下载内容引发的责任由你自行承担。</p>
+
+    <h2>九、儿童隐私</h2>
+    <p>本产品不面向 14 岁以下儿童，不主动收集任何个人信息。</p>
+
+    <h2>十、政策更新</h2>
+    <p>如本政策发生变更，我们将在本页面更新并调整生效日期/版本号。</p>
+
+    <h2>十一、联系我们 / Contact</h2>
+    <div class="contact">
+      如对本隐私政策有任何疑问或行使数据相关权利，请联系：<br/>
+      东方神速（East Speed）　联系邮箱：<strong>haodongfang@hotmail.com</strong><br/>
+      <span style="color:#5B6B7F;font-size:14px;">（如以个人名义发布，请将邮箱替换为你的联系邮箱 / replace with your publisher contact email if publishing as an individual.）</span>
+    </div>
+
+    <hr class="divider" />
+
+    <h2 class="en">English Summary</h2>
+    <p class="en">East Speed is a local-only download tool. The browser extension only hands your downloads and detected web media (mp4/m3u8/mp3, plain unencrypted blobs) to the companion desktop app running on <strong>your own computer</strong>. It communicates exclusively with the loopback address <code>127.0.0.1</code> (default port 8765). We operate <strong>no remote server</strong>, require no account, and never collect, upload, sell, or share your data; nothing leaves your device. To download login-required files, the relevant site’s cookies and Referer are passed solely to the local app. Media sniffing uses <code>webRequest</code> in read-only, non-blocking mode. The extension contains no remote code (Manifest V3), no ads, and no analytics or tracking SDKs. We do not read forms, passwords, payment data, private messages, or location. DRM-protected content (Widevine/PlayReady/FairPlay, encrypted HLS) is not supported. You may disable takeover/sniffing at any time or uninstall the extension, which clears its local data. Contact: <strong>haodongfang@hotmail.com</strong>. Effective date: 2026-09-20, version v1.2.0.</p>
+
+    <footer>© 2026 东方神速 East Speed · 本页面可作为 Edge 加载项隐私政策 URL 直接托管</footer>
+  </div>
+</div>
+</body>
+</html>

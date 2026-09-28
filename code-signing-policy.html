@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>代码签名政策 · Code Signing Policy — East Speed 东方神速</title>
+<style>
+  :root{--primary:#2D7FF9;--dark:#1456C0;--ink:#1F2937;--muted:#5B6B7F;--line:#E4E9F0;}
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{font-family:"Microsoft YaHei","PingFang SC",Segoe UI,Arial,sans-serif;color:var(--ink);background:#F3F5F8;line-height:1.75;}
+  .hero{background:linear-gradient(135deg,var(--primary),var(--dark));color:#fff;padding:54px 20px 46px;text-align:center;}
+  .hero h1{font-size:34px;margin-bottom:8px;letter-spacing:1px;}
+  .hero .en{opacity:.92;font-size:16px;}
+  .wrap{max-width:880px;margin:-26px auto 0;padding:0 20px 60px;}
+  .card{background:#fff;border:1px solid var(--line);border-radius:12px;padding:26px 30px;box-shadow:0 8px 24px rgba(20,86,192,.06);margin-bottom:18px;}
+  h2{color:var(--dark);font-size:19px;margin:22px 0 10px;}
+  h2:first-child{margin-top:0;}
+  p,li{font-size:14.5px;color:#33415a;}
+  ul{margin:6px 0 6px 22px;}
+  .badge{display:inline-block;background:#EAF2FF;color:var(--dark);border:1px solid #C9DEFF;border-radius:8px;padding:10px 16px;font-size:14.5px;margin:8px 0;}
+  code{background:#F1F4F9;border-radius:5px;padding:1px 6px;font-size:13px;}
+  a{color:var(--primary);text-decoration:none;}
+  table{border-collapse:collapse;width:100%;margin:8px 0;font-size:14.5px;}
+  th,td{border:1px solid var(--line);padding:9px 12px;text-align:left;vertical-align:top;}
+  th{background:#F7FAFF;width:26%;color:var(--dark);}
+  footer{text-align:center;color:var(--muted);font-size:13px;padding:10px 16px 40px;}
+</style>
+</head>
+<body>
+  <header class="hero">
+    <h1>代码签名政策</h1>
+    <div class="en">Code Signing Policy · East Speed (东方神速)</div>
+  </header>
+
+  <div class="wrap">
+    <div class="card">
+      <h2>免费代码签名 / Free code signing</h2>
+      <div class="badge">Free code signing provided by <a href="https://signpath.io/" target="_blank" rel="noopener">SignPath.io</a>, certificate by <a href="https://signpath.org/" target="_blank" rel="noopener">SignPath Foundation</a>.</div>
+      <p>本项目的正式发布版本（<code>DongFangSpeed.exe</code> 等可执行文件）由 SignPath Foundation
+      提供的免费代码签名证书进行签名。签名私钥在 SignPath 的硬件安全模块（HSM）中生成与保管，
+      签名过程把<strong>公开源码仓库</strong>与<strong>发布的二进制文件</strong>可验证地关联起来：
+      用户可据此确认所运行的程序确由本仓库的源码自动构建、且发布后未被篡改。</p>
+      <p>Free code signing is provided by SignPath.io, with the certificate issued to and owned by
+      SignPath Foundation. Each signature cryptographically links the published binary to an
+      automated, verifiable build from this public repository.</p>
+    </div>
+
+    <div class="card">
+      <h2>团队角色与成员 / Team roles</h2>
+      <p>East Speed is currently maintained by a single maintainer, who holds the following roles.
+      Every change is reviewed before it reaches a release branch, and every signing request is
+      manually approved.</p>
+      <table>
+        <tr><th>Authors / Committers（可提交源码）</th><td><a href="https://github.com/haoeastspeed" target="_blank" rel="noopener">haoeastspeed</a>（仓库维护者 / repository owner）</td></tr>
+        <tr><th>Reviewers（代码审查）</th><td>haoeastspeed — 所有变更（含外部 Pull Request）在合入发布分支前均由维护者审查。<br/>All changes, including external pull requests, are reviewed by the maintainer before merging.</td></tr>
+        <tr><th>Approvers（签名审批）</th><td>haoeastspeed（Repository Owners）— 每次代码签名请求都由维护者在 SignPath 后台人工批准。<br/>Every signing request requires manual approval by the repository owner in SignPath.</td></tr>
+      </table>
+    </div>
+
+    <div class="card">
+      <h2>可复现的受信构建 / Verifiable automated builds</h2>
+      <ul>
+        <li>所有待签名的发布二进制都由 <strong>GitHub Actions</strong> 从公开仓库
+          <a href="https://github.com/haoeastspeed/eastspeed" target="_blank" rel="noopener">haoeastspeed/eastspeed</a>
+          的源码自动构建，构建脚本与 CI 配置本身也在该仓库中（<code>.github/workflows/build.yml</code>）。</li>
+        <li>构建过程在干净的 Windows Runner 上完成：安装依赖 → 运行单元/端到端测试 → PyInstaller 打包
+          → 执行 <code>--selftest</code> 自检 → 产出构件，全过程公开可查。</li>
+        <li>每个发布版本的产品名（East Speed）与产品版本号在同一次构建中保持一致（写入可执行文件的版本资源）。</li>
+        <li>不会上传本地编译的二进制去签名；签名仅接受由受信 CI 从源码构建的产物。</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h2>上游开源组件 / Upstream open-source components</h2>
+      <p>安装包中随附 Python、Qt/PyQt、libtorrent 等第三方开源运行库与依赖。这些上游程序库由其各自的
+      开源项目发布，<strong>不使用本项目的签名证书签名</strong>；本项目仅对由自有源码构建的主程序签名。
+      完整依赖与许可证见仓库的 <code>requirements.txt</code> 与 <code>LICENSE</code>。</p>
+    </div>
+
+    <div class="card">
+      <h2>隐私与系统变更 / Privacy &amp; system changes</h2>
+      <p>程序不会在未经用户请求的情况下向其他系统传输信息；下载、媒体接管、更新检查等网络行为均由用户主动发起或可在设置中关闭。
+      详见 <a href="privacy-policy.html">隐私政策 / Privacy Policy</a>。</p>
+      <p>This program will not transfer any information to other networked systems unless specifically
+      requested by the user or the person installing or operating it. Optional features such as
+      browser integration and update checks can be disabled in Settings.</p>
+      <p>通过安装包安装的版本可在 Windows「应用与功能」中卸载；便携版与单文件版为绿色程序，删除文件即可移除。</p>
+    </div>
+  </div>
+
+  <footer>
+    © 2026 东方神速 East Speed ·
+    <a href="index.html">首页 / Home</a> ·
+    <a href="privacy-policy.html">隐私政策 / Privacy Policy</a> ·
+    <a href="https://github.com/haoeastspeed/eastspeed" target="_blank" rel="noopener">GitHub</a>
+  </footer>
+</body>
+</html>
