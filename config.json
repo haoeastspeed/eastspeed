@@ -1,11 +1,9 @@
 {
   "data": {
     "latest_version": "2.0.1",
-    "license_servers": [
-      "http://127.0.0.1:8780"
-    ],
+    "license_servers": [],
     "min_supported_version": "2.0.0",
-    "purchase_url": "https://www.wcfaka.com/details/F36D6475"
+    "purchase_url": ""
   },
-  "sig": "0186315ce9cb7f87c7218e3e921b122627a5e26ef7c2cffe61b13f7e4f1502a50f60cd8007d8db291ffa31b7982ed58aa499d8e2c33db622ebc68b0f71d86708"
+  "sig": "9ac639c8202601137ec1283155f2b7c980c5916a9da35bef7587ad0e790313d5d96bb6b3182822e2d82c9004c5075a2853a68a0431ae735d7bde96cac9462c07"
 }
