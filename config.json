@@ -1,0 +1,11 @@
+{
+  "data": {
+    "latest_version": "2.0.1",
+    "license_servers": [
+      "http://127.0.0.1:8780"
+    ],
+    "min_supported_version": "2.0.0",
+    "purchase_url": "https://www.wcfaka.com/details/F36D6475"
+  },
+  "sig": "0186315ce9cb7f87c7218e3e921b122627a5e26ef7c2cffe61b13f7e4f1502a50f60cd8007d8db291ffa31b7982ed58aa499d8e2c33db622ebc68b0f71d86708"
+}
