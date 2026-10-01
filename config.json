@@ -1,9 +1,11 @@
 {
   "data": {
+    "activation_url": "",
     "latest_version": "2.0.1",
     "license_servers": [],
     "min_supported_version": "2.0.0",
-    "purchase_url": ""
+    "purchase_url": "https://www.wcfaka.com/details/F36D6475",
+    "registry_pubkey": ""
   },
-  "sig": "9ac639c8202601137ec1283155f2b7c980c5916a9da35bef7587ad0e790313d5d96bb6b3182822e2d82c9004c5075a2853a68a0431ae735d7bde96cac9462c07"
+  "sig": "7f1e60a8d90d67cf968af04181d68b793d236815c48c8f9204e5d4fd74056b64721ffc63ecd3a21e5d0aba1d2e6ee8a17ca78b51bb0c3a9319872ff2fe5d8002"
 }
