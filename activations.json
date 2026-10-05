@@ -1,1 +1,1 @@
-{"registry":{"records":{},"updated_at":1791238064},"sig":"484677da1e804c93af2500425b255d8dc58f920b717af3686091e5eaba6f57d8f4589d3b92b7577786e2952967d7efad35208f33656bdef3843d2ef7eb37410b"}
+{"registry":{"records":{"__selftest_diag__":{"code":"DIAG","bindings":[{"fp":"FP-DIAG","bound_at":1791241441}]}},"updated_at":1791241441},"sig":"69c4c5b4fa452490d87d0b1439cdeebbde7e744adeca074aed22f16dab21ad893400bc18ee74b3a57d39143e526c560c6a4936d6b72e86e3727a0df3924a8d06"}
