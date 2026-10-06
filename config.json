@@ -1,11 +1,13 @@
 {
   "data": {
-    "activation_url": "",
-    "latest_version": "2.0.1",
-    "license_servers": [],
-    "min_supported_version": "2.0.0",
     "purchase_url": "https://www.wcfaka.com/details/F36D6475",
-    "registry_pubkey": ""
+    "license_servers": [
+      "https://license.eastspeed.dpdns.org"
+    ],
+    "activation_url": "https://license.eastspeed.dpdns.org",
+    "registry_pubkey": "51f22709c835856613b785c2da0b20e30b55e6ab1289a363f79693c037c4783a",
+    "latest_version": "2.0.1",
+    "min_supported_version": "2.0.0"
   },
-  "sig": "7f1e60a8d90d67cf968af04181d68b793d236815c48c8f9204e5d4fd74056b64721ffc63ecd3a21e5d0aba1d2e6ee8a17ca78b51bb0c3a9319872ff2fe5d8002"
+  "sig": "3ad6fef06e994b9fca6115e2ee87d6309d1ba211b7af5a63eac0f1f48d756985991c645ea86476d8c1e655f2fe44b84597c7a2466f8f24ab3efe4a49d2c1070d"
 }
