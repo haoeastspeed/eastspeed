@@ -1,10 +1,8 @@
 {
   "list": {
     "revoked_nonces": [],
-    "revoked_codes": [
-      "ZE9E-70MC-V8RC-3YW1"
-    ],
-    "updated_at": 1791306532
+    "revoked_codes": [],
+    "updated_at": 1791306669
   },
-  "sig": "f32b9bb36dc82ab3d5eedbf58923697678f4feb48ea9e4127ffc6bff457f022daffab677450de631ee790b0c098ae56a98ce505fe167739d2094fd92529f980d"
+  "sig": "09d7db491850d92a2375aa33fe58c81370bd1c5b59d0f12759a14fd9b3615955d575bba687e497be6c201898e1461fe41eeada66749ea00f7daafbd833953902"
 }
