@@ -17,22 +17,30 @@
 - **普通用户请直接在本页面（免费试用版）下载。**
 - 需要 Pro 授权版请前往 [haoeastspeed/eastspeed-pro](https://github.com/haoeastspeed/eastspeed-pro)。
 
-## 关于本仓库
-
-本软件为 **闭源专有软件，源代码不公开**。本仓库（免费试用版发布渠道）仅用于：
-
-- 发布免费试用版安装包与自动更新清单；
-- 托管官方网站与隐私政策（GitHub Pages）；
-- 收集用户问题与反馈（Issues）。
-
 ## 下载
 
 在 [Releases](https://github.com/haoeastspeed/eastspeed/releases/latest) 中选择：
 
-- **East Speed Setup.exe**：标准安装版（推荐）
-- **East Speed MSI.msi**：MSI 安装包，支持静默安装、可封装进系统镜像
-- **East Speed Portable.zip**：免安装便携版
-- **East Speed.exe**：单文件可执行版
+- **East-Speed.exe**：单文件可执行版（开箱即用，推荐）
+- **East-Speed-Setup.exe**：标准安装版
+- **East-Speed-MSI.msi**：MSI 安装包，支持静默安装、可封装进系统镜像
+- **East-Speed-Portable.zip**：免安装便携版
+
+### 国内下载加速
+
+GitHub 直连国内较慢且波动，可按以下顺序选择（文件内容完全一致）：
+
+1. **官方边缘镜像（推荐，稳定、支持多线程/断点续传）**，把对应文件名拼到镜像域名后即可，例如单文件版：
+   - https://update.eastspeed.dpdns.org/East-Speed.exe
+   - 安装版：https://update.eastspeed.dpdns.org/East-Speed-Setup.exe
+2. **第三方 GitHub 加速（公益服务，可能限流或关停；若失效请改用上面的官方镜像或 GitHub 直连）**：
+   - https://gh-proxy.com/https://github.com/haoeastspeed/eastspeed/releases/latest/download/East-Speed.exe
+
+> 软件内置自动更新默认走官方边缘镜像并多线程下载，GitHub 直连自动备用，无需手动处理。
+
+## 关于本仓库
+
+本软件为 **闭源专有软件，源代码不公开**。本仓库（免费试用版发布渠道）仅用于发布成品与自动更新清单、托管官网与隐私政策（GitHub Pages）、收集问题与反馈（Issues）。
 
 ## 链接
 
