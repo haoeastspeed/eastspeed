@@ -1,8 +1,10 @@
 {
   "list": {
     "revoked_nonces": [],
-    "revoked_codes": [],
-    "updated_at": 1791356944
+    "revoked_codes": [
+      "TEST-TEST-TEST-TEST"
+    ],
+    "updated_at": 1791356958
   },
-  "sig": "532785d878d503c16f0a30514f86e1cd3d5608a2008a308685397ed0793914bbbea781777f05017f0a1314dd91d1b5675718e8c52db20c5586578f5aa4f19601"
+  "sig": "e92c2ef60ade9bcd92df26c1dad856545b33df2843702dd8debf1a693dd7a2329db9f622bb3a9f027025907278d1061b915ddd5743e69494a0e245212bb44e0b"
 }
