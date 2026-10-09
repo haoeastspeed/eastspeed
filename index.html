@@ -15,7 +15,7 @@
   .btns{margin-top:30px;display:flex;gap:14px;justify-content:center;flex-wrap:wrap;}
   .btn{display:inline-block;padding:12px 28px;border-radius:8px;font-size:16px;text-decoration:none;font-weight:600;}
   .btn-light{background:#fff;color:var(--dark);}
-  .btn-outline{border:1.5px solid rgba(255,255,255,.8);color:#fff;}
+  .btn-outline{border:1.5px solid rgba(255,255,255,.85);color:#fff;}
   .wrap{max-width:960px;margin:-34px auto 0;padding:0 18px 60px;}
   .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;}
   .card{background:#fff;border:1px solid var(--line);border-radius:12px;padding:22px 22px;box-shadow:0 8px 24px rgba(20,86,192,.06);}
@@ -25,6 +25,7 @@
   .note{max-width:960px;margin:26px auto 0;padding:0 18px;color:var(--muted);font-size:14px;text-align:center;}
   footer{text-align:center;color:var(--muted);font-size:13px;padding:30px 16px 40px;}
   footer a{color:var(--primary);text-decoration:none;}
+  footer .sep{margin:0 8px;opacity:.5;}
 </style>
 </head>
 <body>
@@ -34,7 +35,7 @@
     <p>简洁干净、快速轻巧的 Windows 多线程下载管理器，浏览器一键接管，支持断点续传与网页媒体下载。</p>
     <div class="btns">
       <a class="btn btn-light" href="https://github.com/haoeastspeed/eastspeed/releases/latest/download/EastSpeed.exe" title="下载单文件免安装版（Windows 64 位）">免费下载 · Windows 版</a>
-      <a class="btn btn-outline" href="privacy-policy.html">浏览器扩展隐私政策</a>
+      <a class="btn btn-outline" href="https://update.eastspeed.dpdns.org/EastSpeed.exe" title="国内加速通道，下载较慢时请使用此链接">国内加速下载</a>
     </div>
   </header>
 
@@ -51,9 +52,11 @@
   <p class="note">浏览器扩展为桌面程序的配套组件，所有下载数据仅在浏览器与本机程序之间传输，不上传云端、不含广告与跟踪。不支持受 DRM 保护的内容。</p>
 
   <footer>
-    © 2026 东方神速 East Speed ·
-    <a href="privacy-policy.html">隐私政策 / Privacy Policy</a> ·
-    <a href="code-signing-policy.html">代码签名政策 / Code Signing Policy</a>
+    © 2026 东方神速 East Speed
+    <span class="sep">·</span><a href="privacy-policy.html">隐私政策 / Privacy Policy</a>
+    <span class="sep">·</span><a href="code-signing-policy.html">下载验证与安全说明</a>
+    <span class="sep">·</span><a href="https://github.com/haoeastspeed/eastspeed-pro">Pro 专业版</a>
+    <span class="sep">·</span><a href="mailto:wwwhdf@126.com">问题反馈</a>
   </footer>
 </body>
 </html>
