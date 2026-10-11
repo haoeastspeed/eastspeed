@@ -8,16 +8,19 @@
   :root{--primary:#2D7FF9;--dark:#1456C0;--ink:#1F2937;--muted:#5B6B7F;--line:#E4E9F0;}
   *{box-sizing:border-box;margin:0;padding:0;}
   body{font-family:"Microsoft YaHei","PingFang SC",Segoe UI,Arial,sans-serif;color:var(--ink);background:#F3F5F8;line-height:1.7;}
-  .hero{background:linear-gradient(135deg,var(--primary),var(--dark));color:#fff;padding:72px 20px 64px;text-align:center;}
+  .hero{background:linear-gradient(135deg,var(--primary),var(--dark));color:#fff;padding:70px 20px 62px;text-align:center;}
   .hero h1{font-size:46px;margin-bottom:10px;letter-spacing:2px;}
   .hero .en{opacity:.9;font-size:18px;letter-spacing:1px;}
   .hero p{margin-top:18px;font-size:18px;opacity:.95;}
-  .btns{margin-top:30px;display:flex;gap:14px;justify-content:center;flex-wrap:wrap;}
+  .badge{display:inline-block;margin-top:20px;background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.55);
+    padding:5px 18px;border-radius:999px;font-size:14px;letter-spacing:.5px;}
+  .btns{margin-top:28px;display:flex;gap:14px;justify-content:center;flex-wrap:wrap;}
   .btn{display:inline-block;padding:12px 28px;border-radius:8px;font-size:16px;text-decoration:none;font-weight:600;}
   .btn-light{background:#fff;color:var(--dark);}
   .btn-outline{border:1.5px solid rgba(255,255,255,.85);color:#fff;}
-  .wrap{max-width:960px;margin:-34px auto 0;padding:0 18px 60px;}
-  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;}
+  .hint{margin-top:14px;font-size:13px;opacity:.82;}
+  .wrap{max-width:1040px;margin:-34px auto 0;padding:0 18px 60px;}
+  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px;}
   .card{background:#fff;border:1px solid var(--line);border-radius:12px;padding:22px 22px;box-shadow:0 8px 24px rgba(20,86,192,.06);}
   .card h3{color:var(--dark);font-size:17px;margin-bottom:8px;}
   .card p{color:#42506a;font-size:14.5px;}
@@ -32,30 +35,34 @@
   <header class="hero">
     <h1>东方神速</h1>
     <div class="en">East Speed Download Manager</div>
-    <p>简洁干净、快速轻巧的 Windows 多线程下载管理器，浏览器一键接管，支持断点续传与网页媒体下载。</p>
+    <p>简洁干净、快速轻巧的 Windows 多线程下载管理器，浏览器一键接管，支持断点续传、网页媒体下载与网盘直链。</p>
+    <div class="badge">v1.0.1 · 初版正式发布</div>
     <div class="btns">
-      <a class="btn btn-light" href="https://github.com/haoeastspeed/eastspeed/releases/latest/download/EastSpeed.exe" title="下载单文件免安装版（Windows 64 位）">免费下载 · Windows 版</a>
-      <a class="btn btn-outline" href="https://update.eastspeed.dpdns.org/EastSpeed.exe" title="国内加速通道，下载较慢时请使用此链接">国内加速下载</a>
+      <a class="btn btn-light" href="https://github.com/haoeastspeed/eastspeed-pro/releases/latest/download/EastSpeedPro.exe" title="下载单文件免安装版（Windows 10/11 64 位）">下载 Windows 版</a>
+      <a class="btn btn-outline" href="https://update.eastspeed.dpdns.org/pro/EastSpeedPro.exe" title="国内加速通道，下载较慢时请使用此链接">国内加速下载</a>
     </div>
+    <div class="hint">单文件免安装版 · Windows 10/11 64 位；安装版、MSI 与便携版请见 <a href="https://github.com/haoeastspeed/eastspeed-pro/releases/latest" style="color:#fff;text-decoration:underline;">全部下载</a></div>
   </header>
 
   <div class="wrap">
     <h2 class="sec-title">主要功能</h2>
     <div class="grid">
-      <div class="card"><h3>多线程加速</h3><p>最多 16 个并发连接分段下载，断点续传、失败自动重试、卡死连接自动切换。</p></div>
-      <div class="card"><h3>浏览器接管</h3><p>配套 Edge / Chrome 扩展，点击下载链接自动弹出接管窗口，也可手动粘贴链接。</p></div>
-      <div class="card"><h3>网页媒体下载</h3><p>嗅探 mp4 / m3u8(HLS) / mp3，视频页悬浮下载按钮，HLS 自动下载分片并合并。</p></div>
-      <div class="card"><h3>更多协议与工具</h3><p>HTTP/HTTPS/FTP/FTPS、BT 种子与磁力、MD5/SHA 校验、计划任务、代理与杀毒调用等。</p></div>
+      <div class="card"><h3>多线程加速</h3><p>多连接分段下载，并发数可调（默认 16、最高 64），支持断点续传、失败自动重试与卡死连接自动切换。</p></div>
+      <div class="card"><h3>智能分片加速</h3><p>运行时动态分裂最慢分片、由新连接接管以消除长尾；模拟真实浏览器指纹，顺利通过防盗链与反爬校验。</p></div>
+      <div class="card"><h3>浏览器接管</h3><p>配套 Edge / Chrome 扩展，点击网页下载链接自动弹出接管窗口，也可手动粘贴或拖入链接。</p></div>
+      <div class="card"><h3>网页媒体下载</h3><p>嗅探 m3u8(HLS) / DASH / mp4 / mp3，视频页悬浮下载按钮，自动下载分片并合并封装为完整文件。</p></div>
+      <div class="card"><h3>网盘直链解析</h3><p>支持阿里云盘、夸克/UC、123 等分享链接解析直连下载，阿里云盘可按需登录；可在设置中开关。</p></div>
+      <div class="card"><h3>多协议与工具箱</h3><p>HTTP/HTTPS/FTP/SFTP、BT 种子与磁力、ed2k、哈希校验、计划队列、资源搜索、手机远程、代理与杀毒调用。</p></div>
     </div>
   </div>
 
-  <p class="note">浏览器扩展为桌面程序的配套组件，所有下载数据仅在浏览器与本机程序之间传输，不上传云端、不含广告与跟踪。不支持受 DRM 保护的内容。</p>
+  <p class="note">浏览器扩展为桌面程序的配套组件，所有下载数据仅在浏览器与本机程序之间传输，不上传云端、不含广告与跟踪。不下载受 DRM 保护的内容。</p>
 
   <footer>
     © 2026 东方神速 East Speed
     <span class="sep">·</span><a href="privacy-policy.html">隐私政策 / Privacy Policy</a>
     <span class="sep">·</span><a href="code-signing-policy.html">下载验证与安全说明</a>
-    <span class="sep">·</span><a href="https://github.com/haoeastspeed/eastspeed-pro">Pro 专业版</a>
+    <span class="sep">·</span><a href="https://github.com/haoeastspeed/eastspeed-pro">GitHub</a>
     <span class="sep">·</span><a href="mailto:wwwhdf@126.com">问题反馈</a>
   </footer>
 </body>
