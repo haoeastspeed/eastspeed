@@ -5,9 +5,9 @@
       "https://license.eastspeed.dpdns.org"
     ],
     "activation_url": "https://license.eastspeed.dpdns.org",
-    "registry_pubkey": "51f22709c835856613b785c2da0b20e30b55e6ab1289a363f79693c037c4783a",
+    "registry_pubkey": "60a5163cd3b71ba15409992d854f0cb3b197e804d83bedf5e9ae4ce2f6b9feda",
     "latest_version": "1.0.1",
     "min_supported_version": "1.0.0"
   },
-  "sig": "30edfab0c09a6d049e632b0959bf2c72c464eea6e0162f7c868ce0f618f1fb94b21e9c4d5c848b0c456008e195876760d3e96e95411c0acb8c21faa0f03c2200"
+  "sig": "f9c728b0d5167894d6b7af49d1c15eb6fc1dee742dc50f98a65bd9115dddbfa3b1087341fe529ea0b2cce42c62d912a74d22265c9b65de90fe17d989d908eb0c"
 }
